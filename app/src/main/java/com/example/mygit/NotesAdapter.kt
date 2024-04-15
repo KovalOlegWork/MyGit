@@ -13,7 +13,7 @@ class NotesAdapter(private val notesList: ArrayList<Note>):
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: NotesAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = notesList[position]
         holder.name.text = item.name
     }
@@ -21,7 +21,7 @@ class NotesAdapter(private val notesList: ArrayList<Note>):
     override fun getItemCount(): Int {
         return notesList.size
     }
-    class ViewHolder(val view: View): RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val name = view.findViewById<TextView>(R.id.text)
     }
 }

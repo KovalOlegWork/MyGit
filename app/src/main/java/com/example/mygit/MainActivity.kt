@@ -8,17 +8,25 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var newArrayList: ArrayList<Note>
+    private lateinit var notesList: ArrayList<Note>
     private lateinit var text: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
         recyclerView.layoutManager = LinearLayoutManager(this)
-        newArrayList = arrayListOf<Note>()
-
+        recyclerView.setHasFixedSize(true)
+        notesList = arrayListOf<Note>()
+        getUserData()
     }
-    fun init(){
+    private fun init(){
         recyclerView = findViewById(R.id.recyclerView)
+    }
+    private fun getUserData(){
+        for (i in 1 .. 15){
+            val notes = Note("Note $i")
+            notesList.add(notes)
+        }
+        recyclerView.adapter = NotesAdapter(notesList)
     }
 }
